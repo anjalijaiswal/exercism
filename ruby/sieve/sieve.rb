@@ -1,17 +1,15 @@
 # sieve.rb
 class Sieve 
+  
   def initialize(num)
-    @numbers = (2..num).to_a
+    @num = num
   end 
 
   def primes
-    temp = []
-    prime = []
-    @numbers.each_index do |i|
-      (i+1...@numbers.size).each{ |x| temp << @numbers[x] if @numbers[x] % @numbers[i] == 0 }
-      @numbers = @numbers - temp
+    numbers = (2..@num).to_a
+    numbers.each_index do |i|
+      numbers - (i+1...@num).map{|x| x * i }
     end 
-    @numbers
+    numbers
   end
 end
-

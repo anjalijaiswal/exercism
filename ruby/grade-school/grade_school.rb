@@ -1,21 +1,20 @@
-# grade_school.rb
+# grade_school.rb'
 class School
-  
+  VERSION = 1
   def initialize
-    @hash = Hash.new { |h, k| h[k] = [] }
-    # @grades = {}
+    @grades = Hash.new { |h, k| h[k] = [] }
   end
   
   def to_h
-    @grades.sort.to_h.select{|k,v| v.sort!}
+    @grades.sort.to_h
   end
 
   def grade(grade)
-    @grades.has_key?(grade) ? @grades[grade].sort! : []
+    @grades[grade]
   end
 
   def add(name, grade)
-    # @grades.has_key?(grade) ? @grades[grade] << name : @grades[grade] = [name]
-    @grades[grade] << name
+    @grades[grade].push name
+    @grades[grade].sort!
   end
 end

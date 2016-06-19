@@ -2,32 +2,31 @@
 require 'byebug'
 class BeerSong
 
-  def verse(verse_num)
-    var1 = determine_var1(verse_num)
-    var2 = determine_var1(verse_num - 1)
-    
-    if verse_num == 0
-      "No more bottles of beer on the wall, no more bottles of beer.\n" \
-      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-    elsif verse_num == 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\n" \
-      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+  def verse(num)   
+    "#{quantity(num).capitalize} #{bottle_s(num)} of beer on the wall, #{quantity(num)} #{bottle_s(num)} of beer.\n" +
+    "#{action(num)} #{quantity(num - 1)} #{bottle_s(num-1)} of beer on the wall.\n"
+  end
+
+  def action(num)
+    if num == 0
+      'Go to the store and buy some more,'
+    elsif num == 1
+      'Take it down and pass it around,'
     else
-      "#{var1} of beer on the wall, #{var1} of beer.\n" \
-      "Take one down and pass it around, #{var2} of beer on the wall.\n"
+      'Take one down and pass it around,'
     end
   end
 
-  def determine_var1(verse_num)
-    if verse_num == 1
-      '1 bottle'
-    else
-      "#{verse_num} bottles"
-    end
+  def bottle_s(num)
+    num == '1' ? 'bottle' : 'bottles'
+  end
+
+  def quantity(num)
+    num == 0 ? "no more" :  "#{num}"
   end
 
   def verses(from, to)
-    (to..from).map{|verse_num| "#{verse(verse_num)}\n"}.reverse.join
+    (to..from).map{|num| "#{verse(num)}\n"}.reverse.join
   end
 
   def sing

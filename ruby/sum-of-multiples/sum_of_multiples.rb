@@ -8,8 +8,12 @@ class SumOfMultiples
   def self.to(limit, *factors)
     factors.empty? ? factors = [3,5] : factors.flatten!
     multiples = [0]
-    factors.each{|factor| (1..limit).each{|num| multiples << factor*num if factor*num < limit } }
-    multiples.uniq.inject{|sum,multiple| sum += multiple }
+    factors.each do |factor| 
+      (1..limit).each do |num| 
+        multiples << factor*num if factor*num < limit 
+      end
+    end
+    multiples.uniq.inject(:+)
   end  
 
   def to(limit)

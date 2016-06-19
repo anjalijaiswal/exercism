@@ -6,7 +6,7 @@ class Bob
     return 'Whoa, chill out!' if is_yelling?(remark)
     return 'Sure.' if is_qsn?(remark)
     return 'Fine. Be that way!' if is_addressing?(remark)
-    'Whatever.'  #if is_undefined?(remark)
+    'Whatever.' 
   end
 
   def is_qsn?(remark)

@@ -14,6 +14,5 @@ class Prime
   
   def is_prime?(n)
     (2..Math.sqrt(n)).each {|num| return false if n % num == 0 }
-    true
   end
 end

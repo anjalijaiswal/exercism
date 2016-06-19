@@ -1,5 +1,5 @@
 # binary.rb
-require 'byebug'
+# require 'byebug'
 class Binary
   VERSION = 1
   def initialize(binary)
@@ -8,8 +8,6 @@ class Binary
   end
 
   def to_decimal
-    decimal = 0
-    @binary_num.each_index{ |i| decimal += @binary_num[i].to_i * 2**i }
-    decimal
+    @binary_num.map.with_index{ |n,i| n.to_i * 2**i }.inject(:+)
   end
 end

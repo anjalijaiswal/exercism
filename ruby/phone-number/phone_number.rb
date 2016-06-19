@@ -1,31 +1,30 @@
 # phone_number.rb
 class PhoneNumber 
   def initialize(number)
-    @digits = get_digits(number)
+    @num_string = number
   end
-  
+
   def number
-    if @digits.length < 10 or @digits.length > 11
-      '0' * 10
-    elsif @digits.length == 11   
-      @digits.start_with?('1') ? @digits.sub(/[1]/,'') : '0' * 10
-    else 
-      @digits
-    end
+    get_number
   end
 
   def area_code
-    @digits[0..2]
+    number[0..2]
   end
 
   def to_s
-    digits = number
-    "(#{number[0..2]}) #{number[3..5]}-#{number[6..9]}"
+    number.sub(/(\d{3})(\d{3})/, "(\\1) \\2-")
   end
 
-  def get_digits(number)
-    return '0' * 10 if number =~ /[a-zA-Z]/
-    digits = number.scan(/\d+/)
-    digits.inject(''){|result, ele| result + ele }
+  def get_number
+    if @num_string =~ /[a-zA-Z]/ or @num_string.length < 10 
+      '0'*10
+    elsif @num_string.length == 11 and @num_string.start_with? '1'
+      @num_string.sub('1','')
+    elsif @num_string.gsub(/[^0-9]/,'').length > 10
+      '0'*10
+    else
+      @num_string.gsub(/[^0-9]/,'')
+    end  
   end
 end

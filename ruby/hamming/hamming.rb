@@ -1,14 +1,17 @@
 #hamming.rb
 class Hamming
+  
   VERSION = 1
-  def self.compute(string1,string2)
-    raise ArgumentError if string1.length != string2.length
-    arry1 = string1.chars
-    i = count = 0
-    string2.each_char do |char|
-      arry1[i].include?(char) ? count += 0 : count += 1
-      i += 1
-    end
-    count
+  
+  def self.compute(string1,string2) 
+    raise_size_mismatch(string1, string2)
+    (0...string1.length).select{|i| string2[i] != string1[i] }.count
   end
+
+  def self.raise_size_mismatch(string1, string2)
+    if string1.length != string2.length
+      raise ArgumentError.new('String length mismatch')
+    end
+  end
+
 end 

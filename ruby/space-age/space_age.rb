@@ -1,5 +1,5 @@
 # space_age.rb
-class SpaceAge 
+class SpaceAge
   YEAR = 31_557_600
   SPACE_YEARS = {
     earth:   1.0,
@@ -10,11 +10,12 @@ class SpaceAge
     saturn:  29.447498,
     uranus:  84.016846,
     neptune: 164.79132
-  }
+  }.freeze
+
   def initialize(sec)
     @sec = sec.to_f
   end
-  
+
   SPACE_YEARS.each do |planet, divider|
     define_method "on_#{planet}" do
       @sec / YEAR / divider

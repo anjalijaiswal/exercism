@@ -1,16 +1,16 @@
 # trinary.rb
 class Trinary
   def initialize(string)
-    if string =~ /[a-zA-Z]+/ 
-      @string = [0] 
+    if string =~ /[012]+/ 
+      @trinary_arry = string.chars.map(&:to_i).reverse
     else
-      @string = string.chars.map{|char| char.to_i}.reverse
+      @trinary_arry = [0] 
     end
   end
 
   def to_decimal 
-    @string.map.with_index do |element, index|
-      element * 3**index
+    @trinary_arry.map.with_index do |trinary_digit,index|
+      trinary_digit * 3**index 
     end.inject(:+)
   end
 end
